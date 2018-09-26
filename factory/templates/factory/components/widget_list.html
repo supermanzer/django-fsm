@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col s8 center-align">
+        <h4 class="indigo-text text-darken-4">
+            Widget List
+        </h4>
+    </div>
+    <div class="col s4 right-align">
+        <a href="" class="btn waves-effect waves-light js-new-widget mr-2" data-url="{% url 'factory:make-widget' %}"><i class="material-icons left">add</i>  New Widget</a>
+    </div>
+</div>
+<div class="divider"></div>
+<div class="row">
+    {% for widget in widgets %}
+       {% if forloop.first %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date Created</th>
+                    <th>Date Modified</th>
+                    <th>Type</th>
+                    <th>Number</th>
+                    <th>Description</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+       {% endif %}
+            <tr>
+                <td>{{widget.date_created}}</td>
+                <td>{{widget.date_modified}}</td>
+                <td>{{widget.get_type_display}}</td>
+                <td>{{widget.widget_number}}</td>
+                <td>{{widget.description}}</td>
+                <td>
+                    <a href="" class="js-widget-edit green-text text-darken-2">
+                        <i class="material-icons">edit</i>
+                    </a>
+                </td>
+                <td>
+                    <a href="" class="js-widget-delete red-text text-darken-2">
+                        <i class="material-icons">delete</i>
+                    </a>
+                </td>
+            </tr>
+       {% if forloop.last %}
+           </tbody>
+        </table>
+       {% endif %}
+    {% empty %}
+
+    {% endfor %}
+</div>

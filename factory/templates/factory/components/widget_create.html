@@ -1,0 +1,36 @@
+<!--
+#################################################################
+factory/componenst/widget_create.html
+#################################################################
+A simple form used to create widget instances
+-->
+<div class="row">
+    <div class="row center-align grey lighten-2">
+        <h4 class="indigo-text text-darken-4">{{form_title}}</h4>
+    </div>
+    <form action="{% url 'factory:make-widget' %}" class="col s12 js-make-widget" data-reload=".js-load-widgets">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s5">
+                {{form.widget_number}}
+                <label for="{{form.widget_number.id_for_label}}">{{form.widget_number.label}}</label>
+                <small>{{form.widget_number.help_text}}</small>
+            </div>
+            <div class="input-field col s5 offset-s1">
+                {{form.type}}
+                <label for="{{form.type.id_for_label}}">{{form.type.label}}</label>
+                <small>{{form.type.help_text}}</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s10 offset-s1 center-align input-field">
+                {{form.description}}
+                <label for="{{form.description.id_for_label}}">{{form.description.label}}</label>
+                <small>{{form.description.help_text}}</small>
+            </div>
+        </div>
+        <div class="row center-align mt-4">
+            <button type="submit" class="gd-lightblue btn waves-effect waves-light">Create</button>
+        </div>
+    </form>
+</div>

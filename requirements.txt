@@ -1,0 +1,7 @@
+########################################################
+# Defining the required modules for this Python application
+########################################################
+
+Django>=2.0
+django-fsm
+psycopg2

@@ -1,0 +1,47 @@
+<!--
+##############################################################
+factory/nav.html
+##############################################################
+This template defines the navbar and footer components
+identified in base.html.  Futher content is added through
+templates that inheret from this one.
+-->
+{% extends "factory/base.html" %}
+
+{% block header %}
+<!-- Sidenav -->
+<ul class="sidenav grey lighten-4" id="mysidenav">
+    <li><a href="">Things</a></li>
+    <li><a href="">Stuff</a></li>
+    <li><a href="">Placeholder</a></li>
+</ul>
+<!-- .Sidenav -->
+<div class="dark-mask navbar-fixed">
+    <!-- NAV BAR -->
+    <nav class="nav-wrapper indigo darken-2">
+        <div class="container">
+            <a href="#" class='brand-logo'>Home</a>
+            <a href="" data-target='mysidenav' class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="">Things</a></li>
+                <li><a href="">Stuff</a></li>
+                <li><a href="">Placeholder</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- .NAV BAR -->
+</div>
+{% endblock %}
+
+
+{% block footer %}
+<footer class="page-footer grey darken-2 fixed">
+    <div class="contaier">
+        <div class="row">
+            <div class="col s12 center-align">
+                &copy; 2018 - C. Ryan Manzer
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

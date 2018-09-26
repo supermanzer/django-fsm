@@ -1,0 +1,22 @@
+{% extends "factory/nav.html" %}
+{% load static %}
+
+{% block main %}
+<div class="container" id="main-space">
+    <div class="row js-load-widgets" data-url="{% url 'factory:widget-list' %}">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block more_scripts %}
+<script src="{% static 'js/index.js' %}" charset="utf-8"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function(){
+        let resp = loadWidgets();
+        resp.then(
+            indexInit()
+        );
+    });
+</script>
+{% endblock %}

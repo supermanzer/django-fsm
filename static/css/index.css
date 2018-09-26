@@ -1,0 +1,39 @@
+/*
+index.css
+-------------------------------------------------------------
+A set of general style rules for our Factory application
+*/
+
+
+/*
+sticky footer rules
+-------------------------------------------------------------
+*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
+
+/*
+ Useful spacing rules
+ ------------------------------------------------------------
+ */
+.mr-1 {
+    margin: 1rem;
+}
+.mr-2 {
+    margin: 2rem;
+}
+.mr-3 {
+    margin: 3rem;
+}
+.mr-4 {
+    margin: 4rem;
+}
+.mr-5 {
+    margin: 5rem;
+}

@@ -1,0 +1,55 @@
+<!--
+##############################################################
+factory/base.html
+##############################################################
+The base template loading our common static files and setting
+up major page section blocks.
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>{{title}}</title>
+        <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/index.css' %}">
+      {% block more_style %}
+
+      {% endblock %}
+    </head>
+    <body>
+    <header>
+    {% block header %}
+    <!-- Header content like navbar loaded here -->
+    {% endblock %}
+    </header>
+    <main>
+    {% block main %}
+    <!-- main content goes here -->
+    {% endblock %}
+
+    <!-- Generic Modal Window element -->
+    <div id="matmodal" class="modal">
+        <div id="modal-content" class="model-content">
+
+        </div>
+    </div>
+    <!-- .Modal -->
+    </main>
+
+    {% block footer %}
+    <!-- footer goes here
+     ## Because some styling goes in the <footer> semantic element, this is kept with the rest of the HTML ##
+     -->
+    {% endblock %}
+
+        <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% block more_scripts %}
+
+    {% endblock %}
+    </body>
+</html>
