@@ -13,6 +13,13 @@ const modelels = {
 };
 
 /*
+ Materialize manipulation functions - Useful shortcuts
+ */
+ function modClose() {
+     M.Modal.getInstance(document.querySelector('#matmodal')).close();
+ }
+
+/*
 Materialize Component Initialization Functions
 -------------------------------------------------------------
 */
@@ -71,7 +78,9 @@ function assignNewWidget() {
                     })
     });
 }
-
+function assignEditWidget() {
+    // TODO: Finish the assigning here
+}
 function loadWidgets() {
     var div = document.querySelector('.js-load-widgets');
     var resp = fetch(div.dataset.url)
@@ -87,13 +96,27 @@ function loadWidgets() {
                 });
     return resp
 }
-
+function loadRuns() {
+    var div = document.querySelector('div.js-load-runs');
+    var resp = fetch(div.dataset.url)
+                .then(resp=>resp.json())
+                .then(myJson => {
+                    if (myJson.is_valid) {
+                        html = myJson.html
+                    } else {
+                        html = myJson.err_msg
+                    }
+                    div.innerHTML = html;
+                }).then(response => {
+                    // TODO: Add in createRun functionality
+                })
+}
 function createWidget(event) {
     event.preventDefault();
     var form = document.querySelector('form.js-make-widget');
     var fD = new FormData(form);
     var reload_target = form.dataset.reload;
-    var url = form.getAttribute('action')
+    var url = form.getAttribute('action');
     var resp = fetch(url, {
         method: 'POST',
         body: fD,
@@ -108,31 +131,27 @@ function createWidget(event) {
                 el.innerHTML = myJson.err_msg;
             }
         });
-    M.Modal.getInstance(document.querySelector('#matmodal')).close();
+    modClose();
 }
-/*
- Generic Form Handling Functions
- ------------------------------------------------------------
- */
- // This function returns an array of objects for each input
- function serializeArray(form) {
-	    var field, l, s = [];
-	    if (typeof form == 'object' && form.nodeName == "FORM") {
-	        var len = form.elements.length;
-	        for (var i=0; i<len; i++) {
-	            field = form.elements[i];
-	            if (field.name && !field.disabled && field.type != 'file' && field.type != 'reset' && field.type != 'submit' && field.type != 'button') {
-	                if (field.type == 'select-multiple') {
-	                    l = form.elements[i].options.length;
-	                    for (j=0; j<l; j++) {
-	                        if(field.options[j].selected)
-	                            s[s.length] = { name: field.name, value: field.options[j].value };
-	                    }
-	                } else if ((field.type != 'checkbox' && field.type != 'radio') || field.checked) {
-	                    s[s.length] = { name: field.name, value: field.value };
-	                }
-	            }
-	        }
-	    }
-	    return s;
-	}
+
+function editWidget(event){
+    event.preventDefault();
+    var form = document.querySelector('form.js-make-widget');
+    var fD = new FormData(form);
+    var reload_target = form.dataset.reload;
+    var url = form.getAttribute('action');
+    var resp = fetch(url, {
+        method: 'POST',
+        body: fD,
+        credentials: 'same-origin'
+    }).then(resp => resp.json())
+      .then(myJson=>{
+          var el = document.querySelector(reload_target)
+          if (myJson.is_valid) {
+              el.innerHTML = myJson.html;
+          } else {
+              el.innerHTML = myJson.err_msg;
+          }
+      });
+      modClose();
+}

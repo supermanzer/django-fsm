@@ -5,10 +5,10 @@
         </h4>
     </div>
     <div class="col s4 right-align">
-        <a href="" class="btn waves-effect waves-light js-new-widget mr-2" data-url="{% url 'factory:make-widget' %}"><i class="material-icons left">add</i>  New Widget</a>
+        <a class="btn waves-effect gd-darkgreen waves-light js-new-widget mr-2" data-url="{% url 'factory:make-widget' %}"><i class="material-icons left">add</i>  New Widget</a>
     </div>
 </div>
-<div class="divider"></div>
+
 <div class="row">
     {% for widget in widgets %}
        {% if forloop.first %}
@@ -33,12 +33,12 @@
                 <td>{{widget.widget_number}}</td>
                 <td>{{widget.description}}</td>
                 <td>
-                    <a href="" class="js-widget-edit green-text text-darken-2">
+                    <a class="js-widget-edit green-text text-darken-2" data-url="{% url 'factory:change-widget' widget.id %}">
                         <i class="material-icons">edit</i>
                     </a>
                 </td>
                 <td>
-                    <a href="" class="js-widget-delete red-text text-darken-2">
+                    <a  class="js-widget-delete red-text text-darken-2" data-url="widget.get_delete_url">
                         <i class="material-icons">delete</i>
                     </a>
                 </td>

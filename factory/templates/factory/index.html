@@ -1,9 +1,21 @@
+<!--
+#################################################################
+factory/index.html
+#################################################################
+This template represents the most complete template that will be
+rendered to the user as a whole page.  Other content will be loaded
+into sections using AJAX calls utilizing the Fetch API
+-->
+
 {% extends "factory/nav.html" %}
 {% load static %}
 
 {% block main %}
 <div class="container" id="main-space">
     <div class="row js-load-widgets" data-url="{% url 'factory:widget-list' %}">
+
+    </div>
+    <div class="row js-load-runs" data-url="{% url 'factory:widgetrun-list' %}">
 
     </div>
 </div>

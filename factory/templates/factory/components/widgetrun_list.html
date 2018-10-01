@@ -1,0 +1,43 @@
+<!--
+#################################################################
+factory/components/widgetrun_list.html
+#################################################################
+A simple list of the existing widget runs, to be loaded into a section of the index.html template.
+-->
+
+<div class="row">
+    <div class="col s10 center-align">
+        <h4 class="indigo-text text-darken-3">Widget Runs</h4>
+    </div>
+    <div class="col s2">
+        <a data-url="{% url 'factory:make-widgetrun' %}" class="btn gd-darkgreen circle js-make-run tooltipped"><i class="material-icons">add</i></a>
+    </div>
+</div>
+<div class="row">
+    {% for run in widgetrun_list  %}
+       {% if forloop.first %}
+           <table>
+               <thead>
+                   <tr>
+                       <th>Date Created</th>
+                       <th>Date Modified</th>
+                       <th>Widget</th>
+                       <th>Status</th>
+                   </tr>
+               </thead>
+               <tbody>
+       {% endif %}
+           <tr>
+               <td>{{run.date_created}}</td>
+               <td>{{run.date_modified}}</td>
+               <td>{{run.widget}}</td>
+               <td>{{run.status}}</td>
+           </tr>
+       {% if forloop.last %}
+               </tbody>
+            </table>
+       {% endif %}
+    {% empty %}
+        <!-- If we want some message about not running any widgets, put it here -->
+    {% endfor %}
+</div>
